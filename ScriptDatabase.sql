@@ -1,0 +1,21 @@
+
+USE ChatRealTime;
+
+CREATE TABLE UseTime (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    usePassword VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Refestoken (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    token VARCHAR(500) NOT NULL,
+    expiresAt DATETIME NOT NULL,
+    createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT FK_Refestoken_UseTime
+        FOREIGN KEY (userId)
+        REFERENCES UseTime(id)
+        ON DELETE CASCADE
+);
