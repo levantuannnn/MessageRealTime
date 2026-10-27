@@ -12,11 +12,15 @@ const con = mysql.createConnection({
     database: process.env.DATABASE_NAME,
 });
 con.connect(function (err) {
-    if (err) throw err;
+    if (err) throw console.log("loi ket noi mysql:", err);
     console.log("Connected!!!")
 });
 app.port("auth/login", (req, res) => {
-    let sql = "SELECT"
+    const { email, password } = req.body;
+
+})
+app.get("auth/getlogin", (req, res) => {
+
 })
 app.listen(port, function () {
     console.log('Node server running @ http://localhost:3000')
