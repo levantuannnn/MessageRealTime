@@ -1,22 +1,25 @@
 const express = require("express");
 const port = 8000;
 const app = express()
-const mysql = require("mysql");
-const http = require('http');
-const socketIO = require('socket.io')
-require('dotenv').config({ path: 'local.env' })
+const mysql = require("mysql2");
+const dotenv = require("dotenv");
+dotenv.config();
 const con = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 con.connect(function (err) {
-    if (err) throw console.log("loi ket noi mysql:", err);
+    if (err) throw err;
     console.log("Connected!!!")
 });
-app.port("auth/login", (req, res) => {
+app.post("auth/login", (req, res) => {
     const { email, password } = req.body;
+    res.status(200).res({
+        message: "da dang nhap thanh cong"
+    })
 
 })
 app.get("auth/getlogin", (req, res) => {
