@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
+
 interface User {
      Email: string,
      Password: string,
@@ -9,7 +10,7 @@ export default function Main() {
      const [email, emailSet] = useState<string>("");
      const [password, passwodSet] = useState<string>("");
      const [passwordvery, passwodverySet] = useState<string>("");
-     const [check, setCheck] = useState<boolean>(false)
+     const [check, setCheck] = useState<boolean>(true)
      let changeEmail = (e: any) => {
           console.log("email:", e.target.value)
           emailSet(e.target.value)
@@ -23,13 +24,13 @@ export default function Main() {
      }
      // call api
      let handleLogin = async () => {
-          let resultUser = await fetch(`email=${email}?password=${password}`,
+          let resultUser = await fetch(`http://localhost:8000/register?email=${email}&password=${password}`,
                {
-                    method: "POST"
+                    method: "POST",
                }
           );
-          let status = resultUser.json();
-          // localStorage.setItem("acessToken",status.json)
+          let data = resultUser.json();
+          localStorage.setItem("acessToken", String(data))
      }
      //chuc nang dang ky
      let handleCreate = (e: any) => {

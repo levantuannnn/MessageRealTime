@@ -2,5 +2,8 @@
   "dependencies": {
     "dotenv": "^18.0.9",
     "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^9.0.0"
   }
 }

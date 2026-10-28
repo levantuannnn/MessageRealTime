@@ -1,30 +1,15 @@
 const express = require("express");
-const port = 8000;
+const port = 8080;
 const app = express()
-const mysql = require("mysql2");
 const dotenv = require("dotenv");
 dotenv.config();
-const con = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-});
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!!!")
-});
-app.post("auth/login", (req, res) => {
-    const { email, password } = req.body;
-    res.status(200).res({
-        message: "da dang nhap thanh cong"
-    })
+const router = require("./Routes/auth")
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-})
-app.get("auth/getlogin", (req, res) => {
-
-})
+// Serve static files
+app.use(express.static('public'));
+app.use("/auth", router)
 app.listen(port, function () {
-    console.log('Node server running @ http://localhost:3000')
+    console.log(`Node server running @ http://localhost:${port}`)
 });
