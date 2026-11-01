@@ -9,5 +9,10 @@
     "types": ["node"],
     "noEmit": true
   },
-  "include": ["Model/**/*.ts"]
+  "include": [
+    "Controllers/**/*.ts",
+    "Model/**/*.ts",
+    "db/**/*.ts",
+    "Routes/**/*.ts"
+  ]
 }
