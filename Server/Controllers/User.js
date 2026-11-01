@@ -5,21 +5,23 @@ const bcrypt = require("bcrypt")
 function midelWare(req, res, next) {
     const headers = req.headers.authorization;
     if (!headers) {
-        return res.status(401).json({
-            message: "Vui lòng cung cấp access token hợp lệ."
+        return res.status(400).json({
+            message: "loi khong tim thay"
         });
     }
     const parts = headers.split(" ");
     if (parts.length !== 2) {
-        return res.status(401).json({
-            message: "Vui lòng cung cấp access token hợp lệ."
+        return res.status(400).json({
+            message: "loi khong tim thay"
         });
     }
     const [type, token] = parts;
     if (type !== "Bearer" || !token) {
-        return res.status(401).json({
-            message: "Vui lòng cung cấp access token hợp lệ."
-        });
+        return res.status(400).json(
+            {
+                message: "loi khong tim thay"
+            }
+        )
     }
     try {
         const data = jwt.verify(

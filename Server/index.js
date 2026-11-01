@@ -13,3 +13,23 @@ app.use("/auth", router)
 app.listen(port, function () {
     console.log(`Node server running @ http://localhost:${port}`)
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let user=[9,"tuan","tan",function(){
+     
+}]
